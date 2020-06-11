@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     
-    public void onLanding(){
-        animator.SetBool("isJumping", false);
-    }
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump")){
             jump = true;
             animator.SetBool("isJumping", true);
-            
         }
 
         if(Input.GetButtonDown("Crouch")){
@@ -43,11 +39,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void onLanding(){
+        animator.SetBool("isJumping", false);
+    }
+
     // Called a fixed amount of time
     void FixedUpdate(){
         // Fixed Delta ensures the player moved the same speed regardless of how often called
         controller.Move(horizontalMove*Time.fixedDeltaTime, crouch ,jump);
         jump = false;
+        
     }
 
 

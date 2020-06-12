@@ -22,21 +22,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Use Input to allow control 
+        // horizontalMove = Input.GetAxisRaw("Horizontal")*RUN_SPEED;
         
-        horizontalMove = Input.GetAxisRaw("Horizontal")*RUN_SPEED;
+        // set horizontal move to a constant for continuous running
+        horizontalMove = RUN_SPEED; 
+        
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
-        // Debug.Log(Input.GetButtonDown("Jump"));
         if(Input.GetButtonDown("Jump")){
             jump = true;
             animator.SetBool("isJumping", true);
         }
 
-        if(Input.GetButtonDown("Crouch")){
-            crouch = true;
-        } else if(Input.GetButtonUp("Crouch")){
-            crouch = false;
-        }
+        // Crouching mechanics not needed
+        
+        // if(Input.GetButtonDown("Crouch")){
+        //     crouch = true;
+        // } else if(Input.GetButtonUp("Crouch")){
+        //     crouch = false;
+        // }
     }
 
     public void onLanding(){
